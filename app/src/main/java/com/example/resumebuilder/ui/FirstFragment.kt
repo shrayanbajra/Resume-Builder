@@ -1,13 +1,17 @@
 package com.example.resumebuilder.ui
 
+import android.app.Activity
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.example.resumebuilder.R
 import com.example.resumebuilder.databinding.FragmentFirstBinding
+import com.github.dhaval2404.imagepicker.ImagePicker
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -15,10 +19,9 @@ import com.example.resumebuilder.databinding.FragmentFirstBinding
 class FirstFragment : Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
+    private val mBinding get() = _binding!!
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private var mProfileUri: Uri? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,17 +29,52 @@ class FirstFragment : Fragment() {
     ): View {
 
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
-        return binding.root
+        return mBinding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        mBinding.btnPickImage.setOnClickListener {
+
+            ImagePicker.with(this)
+                .crop()
+                .compress(1024)
+                .maxResultSize(1080, 1080)
+                .createIntent { intent -> imageResult.launch(intent) }
+
         }
+
     }
+
+    private val imageResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            val resultCode = result.resultCode
+            val data = result.data
+
+            when (resultCode) {
+                Activity.RESULT_OK -> {
+                    //Image Uri will not be null for RESULT_OK
+                    val fileUri = data?.data!!
+
+                    mProfileUri = fileUri
+                    mBinding.ivImage.setImageURI(fileUri)
+
+                }
+                ImagePicker.RESULT_ERROR -> {
+
+                    Toast.makeText(context, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+
+                }
+                else -> {
+
+                    Toast.makeText(context, "Task Cancelled", Toast.LENGTH_SHORT).show()
+
+                }
+            }
+        }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

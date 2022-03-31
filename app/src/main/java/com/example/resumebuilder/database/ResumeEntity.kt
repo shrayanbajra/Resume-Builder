@@ -10,9 +10,9 @@ data class ResumeEntity(
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    private val id: Int,
+    val id: Int = Constants.NO_ID,
 
     @ColumnInfo(name = "image_uri")
-    private val imageUri: String
+    val imageUri: String
 
 )
