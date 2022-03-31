@@ -10,14 +10,23 @@ class ResumeRepositoryImpl
 @Inject
 constructor(private val resumeDao: ResumeDao) : ResumeRepository {
 
-    override suspend fun insertResume(resumeEntity: ResumeEntity) {
+    override suspend fun saveResumeToDatabase(resumeEntity: ResumeEntity): Long {
 
-        withContext(Dispatchers.IO) {
+        return withContext(Dispatchers.IO) {
 
-            resumeDao.insert(resume = resumeEntity)
+            return@withContext resumeDao.insert(resume = resumeEntity)
 
         }
 
     }
 
+    override suspend fun getResumeFromDatabase(id: Long): ResumeEntity {
+
+        return withContext(Dispatchers.IO) {
+
+            return@withContext resumeDao.get(id = id)
+
+        }
+
+    }
 }

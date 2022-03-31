@@ -10,18 +10,23 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.example.resumebuilder.database.ResumeEntity
 import com.example.resumebuilder.databinding.FragmentFirstBinding
+import com.example.resumebuilder.utils.showToast
 import com.github.dhaval2404.imagepicker.ImagePicker
+import dagger.hilt.android.AndroidEntryPoint
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
+
+@AndroidEntryPoint
 class FirstFragment : Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
     private val mBinding get() = _binding!!
 
     private var mProfileUri: Uri? = null
+
+    private val mViewModel by lazy { ViewModelProvider(this)[FirstViewModel::class.java] }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +41,51 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        btnPickImageListener()
+        fabSaveImageListener()
+
+
+    }
+
+    private fun fabSaveImageListener() {
+        mBinding.fabSaveImage.setOnClickListener {
+
+            if (mProfileUri == null) {
+
+                mViewModel.getResumeFromDatabase(id = 1L).observe(viewLifecycleOwner) { resume ->
+
+                    val uri = Uri.parse(resume.imageUri)
+                    mBinding.ivImage.setImageURI(uri)
+
+                }
+
+                return@setOnClickListener
+
+            }
+
+            saveResumeToDatabase()
+
+        }
+    }
+
+    private fun saveResumeToDatabase() {
+        val resume = ResumeEntity(imageUri = mProfileUri.toString())
+        mViewModel.saveResumeToDatabase(resume = resume).observe(viewLifecycleOwner) { wasSaved ->
+
+            if (wasSaved) {
+
+                showToast(message = "Insert Success")
+
+            } else {
+
+                showToast(message = "Insert Failed")
+
+            }
+
+        }
+    }
+
+    private fun btnPickImageListener() {
         mBinding.btnPickImage.setOnClickListener {
 
             ImagePicker.with(this)
@@ -45,7 +95,6 @@ class FirstFragment : Fragment() {
                 .createIntent { intent -> imageResult.launch(intent) }
 
         }
-
     }
 
     private val imageResult =

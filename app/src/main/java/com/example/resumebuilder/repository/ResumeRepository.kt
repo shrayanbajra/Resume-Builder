@@ -4,6 +4,8 @@ import com.example.resumebuilder.database.ResumeEntity
 
 interface ResumeRepository {
 
-    suspend fun insertResume(resumeEntity: ResumeEntity)
+    suspend fun saveResumeToDatabase(resumeEntity: ResumeEntity): Long
+
+    suspend fun getResumeFromDatabase(id: Long): ResumeEntity
 
 }

@@ -7,7 +7,10 @@ import kotlinx.coroutines.flow.Flow
 interface ResumeDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(resume: ResumeEntity)
+    suspend fun insert(resume: ResumeEntity): Long
+
+    @Query("SELECT * FROM resume_table WHERE id = :id")
+    suspend fun get(id: Long): ResumeEntity
 
     @Query("SELECT * FROM resume_table ORDER BY id ASC")
     fun getAll(): Flow<List<ResumeEntity>>

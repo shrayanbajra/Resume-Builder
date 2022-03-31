@@ -8,11 +8,13 @@ import com.example.resumebuilder.utils.Constants
 @Entity(tableName = Constants.RESUME_TABLE)
 data class ResumeEntity(
 
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    val id: Int = Constants.NO_ID,
-
     @ColumnInfo(name = "image_uri")
     val imageUri: String
 
-)
+) {
+
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var id: Long = Constants.NO_PRIMARY_KEY
+
+}

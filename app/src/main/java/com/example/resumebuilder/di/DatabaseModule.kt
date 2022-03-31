@@ -22,11 +22,7 @@ class DatabaseModule {
     @Provides
     fun provideDatabase(
         @ApplicationContext context: Context,
-    ) = Room.databaseBuilder(
-        context,
-        ResumeDatabase::class.java,
-        Constants.RESUME_DATABASE
-    ).build()
+    ) = Room.databaseBuilder(context, ResumeDatabase::class.java, Constants.RESUME_DATABASE).build()
 
     @Singleton
     @Provides
