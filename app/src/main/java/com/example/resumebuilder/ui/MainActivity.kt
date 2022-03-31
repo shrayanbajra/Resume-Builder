@@ -1,4 +1,4 @@
-package com.example.resumebuilder
+package com.example.resumebuilder.ui
 
 import android.os.Bundle
 import android.view.Menu
@@ -8,9 +8,12 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.resumebuilder.R
 import com.example.resumebuilder.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
