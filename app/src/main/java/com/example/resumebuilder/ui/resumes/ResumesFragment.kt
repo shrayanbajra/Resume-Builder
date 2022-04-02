@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.resumebuilder.R
 import com.example.resumebuilder.databinding.FragmentResumesBinding
@@ -51,7 +50,6 @@ class ResumesFragment : Fragment() {
     private fun initRvResumes() {
         mBinding.rvResumes.apply {
             layoutManager = LinearLayoutManager(context)
-            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             adapter = mResumeAdapter
         }
     }

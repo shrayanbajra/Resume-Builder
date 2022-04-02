@@ -2,10 +2,12 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginHorizontal="8dp"
-    android:layout_marginVertical="4dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:cardElevation="6dp"
+    app:cardCornerRadius="2dp"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,43 +15,110 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_profile_photo"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.00"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tv_full_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center_vertical"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            app:layout_constraintBottom_toBottomOf="@id/iv_profile_photo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_profile_photo"
+            app:layout_constraintStart_toEndOf="@id/iv_profile_photo"
+            app:layout_constraintTop_toTopOf="@id/iv_profile_photo"
+            app:layout_constraintVertical_bias="0.00"
             tools:text="@tools:sample/full_names" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_edit_resume"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/edit_resume"
-            android:textAllCaps="false"
-            app:icon="@drawable/ic_edit"
-            app:layout_constraintEnd_toStartOf="@id/btn_view_resume"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_full_name" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/dividerHorizontal"
+            app:layout_constraintEnd_toEndOf="@id/btn_delete_resume"
+            app:layout_constraintStart_toStartOf="@id/btn_view_resume"
+            app:layout_constraintTop_toTopOf="@id/btn_view_resume" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_view_resume"
-            android:layout_width="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/view_resume"
+            android:layout_marginTop="8dp"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:text="@string/view"
             android:textAllCaps="false"
+            app:cornerRadius="0dp"
             app:icon="@drawable/ic_eye"
+            app:iconGravity="top"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_edit_resume"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_full_name" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="?android:attr/dividerVertical"
+            app:layout_constraintBottom_toBottomOf="@id/btn_view_resume"
+            app:layout_constraintEnd_toStartOf="@id/btn_edit_resume"
+            app:layout_constraintStart_toEndOf="@id/btn_view_resume"
+            app:layout_constraintTop_toTopOf="@id/btn_view_resume" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_edit_resume"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:text="@string/edit"
+            android:textAllCaps="false"
+            app:cornerRadius="0dp"
+            app:icon="@drawable/ic_edit"
+            app:iconGravity="top"
+            app:layout_constraintBottom_toBottomOf="@id/btn_view_resume"
+            app:layout_constraintEnd_toStartOf="@id/btn_delete_resume"
+            app:layout_constraintStart_toEndOf="@id/btn_view_resume"
+            app:layout_constraintTop_toTopOf="@id/btn_view_resume" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="?android:attr/dividerVertical"
+            app:layout_constraintBottom_toBottomOf="@id/btn_edit_resume"
+            app:layout_constraintEnd_toStartOf="@id/btn_delete_resume"
+            app:layout_constraintStart_toEndOf="@id/btn_edit_resume"
+            app:layout_constraintTop_toTopOf="@id/btn_edit_resume" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_delete_resume"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:text="@string/delete"
+            android:textAllCaps="false"
+            app:cornerRadius="0dp"
+            app:icon="@drawable/ic_delete"
+            app:iconGravity="top"
             app:layout_constraintBottom_toBottomOf="@id/btn_edit_resume"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/btn_edit_resume"

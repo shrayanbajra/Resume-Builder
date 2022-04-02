@@ -25,5 +25,8 @@
     <string name="resume_has_been_saved">Resume has been saved</string>
     <string name="ok">Ok</string>
     <string name="saved">Saved</string>
+    <string name="view">View</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
 
 </resources>
