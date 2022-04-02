@@ -3,14 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/resumesFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.resumebuilder.ui.CreateResumeFragment"
-        android:label="@string/first_fragment_label"
+        android:id="@+id/createResumeFragment"
+        android:name="com.example.resumebuilder.ui.create_resume.CreateResumeFragment"
+        android:label="@string/create_resume"
         tools:layout="@layout/fragment_create_resume">
 
+    </fragment>
+    <fragment
+        android:id="@+id/resumesFragment"
+        android:name="com.example.resumebuilder.ui.resumes.ResumesFragment"
+        android:label="@string/resumes"
+        tools:layout="@layout/fragment_resumes">
+        <action
+            android:id="@+id/action_resumesFragment_to_createResumeFragment"
+            app:destination="@id/createResumeFragment" />
     </fragment>
 
 </navigation>

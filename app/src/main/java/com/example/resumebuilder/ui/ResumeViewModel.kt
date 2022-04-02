@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CreateResumeViewModel
+class ResumeViewModel
 @Inject
 constructor(private val resumeRepository: ResumeRepository) : ViewModel() {
 
@@ -38,6 +38,21 @@ constructor(private val resumeRepository: ResumeRepository) : ViewModel() {
         viewModelScope.launch {
 
             val resume = resumeRepository.getResumeFromDatabase(id = id)
+            result.postValue(resume)
+
+        }
+
+        return result
+
+    }
+
+    fun getAllResumesFromDatabase(): LiveData<List<Resume>> {
+
+        val result = MutableLiveData<List<Resume>>()
+
+        viewModelScope.launch {
+
+            val resume = resumeRepository.getAllResumesFromDatabase()
             result.postValue(resume)
 
         }

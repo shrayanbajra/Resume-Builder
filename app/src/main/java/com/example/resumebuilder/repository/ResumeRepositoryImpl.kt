@@ -29,4 +29,15 @@ constructor(private val resumeDao: ResumeDao) : ResumeRepository {
         }
 
     }
+
+    override suspend fun getAllResumesFromDatabase(): List<Resume> {
+
+        return withContext(Dispatchers.IO) {
+
+            return@withContext resumeDao.getAll()
+
+        }
+
+    }
+
 }

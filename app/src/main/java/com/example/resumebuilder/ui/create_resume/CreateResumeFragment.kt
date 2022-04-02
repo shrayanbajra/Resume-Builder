@@ -1,4 +1,4 @@
-package com.example.resumebuilder.ui
+package com.example.resumebuilder.ui.create_resume
 
 import android.app.Activity
 import android.net.Uri
@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.resumebuilder.data.Resume
 import com.example.resumebuilder.databinding.FragmentCreateResumeBinding
+import com.example.resumebuilder.ui.ResumeViewModel
 import com.example.resumebuilder.utils.getText
 import com.example.resumebuilder.utils.setErrorIfInvalid
 import com.example.resumebuilder.utils.showToast
@@ -28,13 +29,7 @@ class CreateResumeFragment : Fragment() {
 
     private var mProfilePhotoUri: Uri? = null
 
-    private val resume by lazy {
-        Resume(
-            profilePhoto = null, fullName = "", emailAddress = "", phoneNumber = "", address = ""
-        )
-    }
-
-    private val mViewModel by lazy { ViewModelProvider(this)[CreateResumeViewModel::class.java] }
+    private val mViewModel by lazy { ViewModelProvider(this)[ResumeViewModel::class.java] }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -103,11 +98,11 @@ class CreateResumeFragment : Fragment() {
 
             if (wasSaved) {
 
-                showToast(message = "Insert Success")
+                showToast(message = "Resume Saved")
 
             } else {
 
-                showToast(message = "Insert Failed")
+                showToast(message = "Resume Save Failed")
 
             }
 

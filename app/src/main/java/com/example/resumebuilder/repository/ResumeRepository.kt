@@ -8,4 +8,6 @@ interface ResumeRepository {
 
     suspend fun getResumeFromDatabase(id: Long): Resume
 
+    suspend fun getAllResumesFromDatabase(): List<Resume>
+
 }
