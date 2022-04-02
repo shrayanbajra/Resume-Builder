@@ -9,8 +9,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.resumebuilder.R
 import com.example.resumebuilder.data.Resume
 import com.example.resumebuilder.databinding.FragmentCreateResumeBinding
 import com.example.resumebuilder.ui.ResumeViewModel
@@ -98,7 +101,7 @@ class CreateResumeFragment : Fragment() {
 
             if (wasSaved) {
 
-                showToast(message = "Resume Saved")
+                showSuccessDialog()
 
             } else {
 
@@ -107,6 +110,18 @@ class CreateResumeFragment : Fragment() {
             }
 
         }
+    }
+
+    private fun showSuccessDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+            .setTitle(R.string.saved)
+            .setMessage(R.string.resume_has_been_saved)
+            .setPositiveButton(R.string.ok) { dialog, _ ->
+                dialog.dismiss()
+                findNavController().popBackStack()
+            }
+
+        builder.create().show()
     }
 
     private fun btnPickImageListener() {

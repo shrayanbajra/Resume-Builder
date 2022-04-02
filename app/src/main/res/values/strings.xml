@@ -22,5 +22,8 @@
     <string name="view_resume">View Resume</string>
     <string name="create_resume">Create Resume</string>
     <string name="resumes">Resumes</string>
+    <string name="resume_has_been_saved">Resume has been saved</string>
+    <string name="ok">Ok</string>
+    <string name="saved">Saved</string>
 
 </resources>
