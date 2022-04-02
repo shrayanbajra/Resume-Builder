@@ -1,11 +1,11 @@
 package com.example.resumebuilder.repository
 
-import com.example.resumebuilder.database.ResumeEntity
+import com.example.resumebuilder.data.Resume
 
 interface ResumeRepository {
 
-    suspend fun saveResumeToDatabase(resumeEntity: ResumeEntity): Long
+    suspend fun saveResumeToDatabase(resume: Resume): Long
 
-    suspend fun getResumeFromDatabase(id: Long): ResumeEntity
+    suspend fun getResumeFromDatabase(id: Long): Resume
 
 }

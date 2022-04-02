@@ -11,29 +11,37 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.resumebuilder.database.ResumeEntity
-import com.example.resumebuilder.databinding.FragmentFirstBinding
+import com.example.resumebuilder.data.Resume
+import com.example.resumebuilder.databinding.FragmentCreateResumeBinding
+import com.example.resumebuilder.utils.getText
+import com.example.resumebuilder.utils.setErrorIfInvalid
 import com.example.resumebuilder.utils.showToast
 import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class FirstFragment : Fragment() {
+class CreateResumeFragment : Fragment() {
 
-    private var _binding: FragmentFirstBinding? = null
+    private var _binding: FragmentCreateResumeBinding? = null
     private val mBinding get() = _binding!!
 
-    private var mProfileUri: Uri? = null
+    private var mProfilePhotoUri: Uri? = null
 
-    private val mViewModel by lazy { ViewModelProvider(this)[FirstViewModel::class.java] }
+    private val resume by lazy {
+        Resume(
+            profilePhoto = null, fullName = "", emailAddress = "", phoneNumber = "", address = ""
+        )
+    }
+
+    private val mViewModel by lazy { ViewModelProvider(this)[CreateResumeViewModel::class.java] }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        _binding = FragmentCreateResumeBinding.inflate(inflater, container, false)
         return mBinding.root
 
     }
@@ -44,32 +52,53 @@ class FirstFragment : Fragment() {
         btnPickImageListener()
         fabSaveImageListener()
 
-
     }
 
     private fun fabSaveImageListener() {
-        mBinding.fabSaveImage.setOnClickListener {
+        mBinding.apply {
 
-            if (mProfileUri == null) {
+            btnSave.setOnClickListener {
 
-                mViewModel.getResumeFromDatabase(id = 1L).observe(viewLifecycleOwner) { resume ->
+                tilFullName.setErrorIfInvalid(errorMessage = "Please enter full name")
+                tilEmailAddress.setErrorIfInvalid(errorMessage = "Please enter email address")
+                tilPhoneNumber.setErrorIfInvalid(errorMessage = "Please enter phone number")
+                tilAddress.setErrorIfInvalid(errorMessage = "Please enter address")
 
-                    val uri = Uri.parse(resume.imageUri)
-                    mBinding.ivImage.setImageURI(uri)
-
+                if (areAllFieldsValid()) {
+                    saveResumeToDatabase()
                 }
 
-                return@setOnClickListener
-
             }
-
-            saveResumeToDatabase()
 
         }
     }
 
+    fun areAllFieldsValid(): Boolean {
+
+        mBinding.apply {
+
+            return tilFullName.error.isNullOrBlank()
+                    && tilEmailAddress.error.isNullOrBlank()
+                    && tilPhoneNumber.error.isNullOrBlank()
+                    && tilAddress.error.isNullOrBlank()
+
+        }
+
+
+    }
+
     private fun saveResumeToDatabase() {
-        val resume = ResumeEntity(imageUri = mProfileUri.toString())
+
+        val profilePhoto = if (mProfilePhotoUri == null) null else mProfilePhotoUri.toString()
+
+        val resume = Resume(
+            profilePhoto = profilePhoto,
+            fullName = mBinding.tilFullName.getText(),
+            emailAddress = mBinding.tilEmailAddress.getText(),
+            phoneNumber = mBinding.tilPhoneNumber.getText(),
+            address = mBinding.tilAddress.getText()
+        )
+
         mViewModel.saveResumeToDatabase(resume = resume).observe(viewLifecycleOwner) { wasSaved ->
 
             if (wasSaved) {
@@ -86,7 +115,7 @@ class FirstFragment : Fragment() {
     }
 
     private fun btnPickImageListener() {
-        mBinding.btnPickImage.setOnClickListener {
+        mBinding.btnChoosePhoto.setOnClickListener {
 
             ImagePicker.with(this)
                 .crop()
@@ -107,8 +136,8 @@ class FirstFragment : Fragment() {
                     //Image Uri will not be null for RESULT_OK
                     val fileUri = data?.data!!
 
-                    mProfileUri = fileUri
-                    mBinding.ivImage.setImageURI(fileUri)
+                    mProfilePhotoUri = fileUri
+                    mBinding.ivProfilePhoto.setImageURI(fileUri)
 
                 }
                 ImagePicker.RESULT_ERROR -> {

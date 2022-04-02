@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.resumebuilder.database.ResumeEntity
+import com.example.resumebuilder.data.Resume
 import com.example.resumebuilder.repository.ResumeRepository
 import com.example.resumebuilder.utils.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,17 +12,17 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FirstViewModel
+class CreateResumeViewModel
 @Inject
 constructor(private val resumeRepository: ResumeRepository) : ViewModel() {
 
-    fun saveResumeToDatabase(resume: ResumeEntity): LiveData<Boolean> {
+    fun saveResumeToDatabase(resume: Resume): LiveData<Boolean> {
 
         val result = MutableLiveData<Boolean>()
 
         viewModelScope.launch {
 
-            val rowId = resumeRepository.saveResumeToDatabase(resumeEntity = resume)
+            val rowId = resumeRepository.saveResumeToDatabase(resume = resume)
             result.postValue(rowId != Constants.NO_PRIMARY_KEY)
 
         }
@@ -31,9 +31,9 @@ constructor(private val resumeRepository: ResumeRepository) : ViewModel() {
 
     }
 
-    fun getResumeFromDatabase(id: Long): LiveData<ResumeEntity> {
+    fun getResumeFromDatabase(id: Long): LiveData<Resume> {
 
-        val result = MutableLiveData<ResumeEntity>()
+        val result = MutableLiveData<Resume>()
 
         viewModelScope.launch {
 
