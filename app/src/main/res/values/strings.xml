@@ -40,5 +40,7 @@
     <string name="company_name">Company Name</string>
     <string name="start_date">Start Date</string>
     <string name="end_date">End Date</string>
+    <string name="jan_2021">Jan 2021</string>
+    <string name="apr_2022">Apr 2022</string>
 
 </resources>

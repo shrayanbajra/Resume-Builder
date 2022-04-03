@@ -41,7 +41,9 @@ class WorkSummaryFragment : Fragment() {
 
     private val mWorkDetailsAdapter by lazy {
         WorkDetailsAdapter(
-            mWorkDetails = mWorkSummary, clickListener = mWorkDetailsChangeListener
+            activity = requireActivity(),
+            mWorkDetails = mWorkSummary,
+            clickListener = mWorkDetailsChangeListener
         )
     }
     private val mWorkDetailsChangeListener: WorkDetailsAdapter.WorkDetailsChangeListener
@@ -83,10 +85,7 @@ class WorkSummaryFragment : Fragment() {
 
         initRvWorkSummary()
 
-        mBinding.fabAddWorkDetails.setOnClickListener {
-            mWorkDetailsAdapter.addNewWorkDetails()
-            mBinding.rvWorkSummary.smoothScrollToPosition(mWorkDetailsAdapter.getLastItemIndex())
-        }
+        fabAddWorkDetailsListener()
 
         btnPreviousListener()
         btnNextListener()
@@ -97,6 +96,13 @@ class WorkSummaryFragment : Fragment() {
         mBinding.rvWorkSummary.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = mWorkDetailsAdapter
+        }
+    }
+
+    private fun fabAddWorkDetailsListener() {
+        mBinding.fabAddWorkDetails.setOnClickListener {
+            mWorkDetailsAdapter.addNewWorkDetails()
+            mBinding.rvWorkSummary.smoothScrollToPosition(mWorkDetailsAdapter.getLastItemIndex())
         }
     }
 
