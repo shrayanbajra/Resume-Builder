@@ -7,10 +7,13 @@
 
     <fragment
         android:id="@+id/personalInfoFragment"
-        android:name="com.example.resumebuilder.ui.create_resume.PersonalInfoFragment"
+        android:name="com.example.resumebuilder.ui.create_resume.personal_info.PersonalInfoFragment"
         android:label="@string/personal_information"
         tools:layout="@layout/fragment_personal_info">
 
+        <action
+            android:id="@+id/action_personalInfoFragment_to_workSummaryFragment"
+            app:destination="@id/workSummaryFragment" />
     </fragment>
 
     <fragment
@@ -18,19 +21,25 @@
         android:name="com.example.resumebuilder.ui.resumes.ResumesFragment"
         android:label="@string/resumes"
         tools:layout="@layout/fragment_resumes">
-        <action
-            android:id="@+id/action_resumesFragment_to_createResumeFragment"
-            app:destination="@id/createResumeFragment" />
-    </fragment>
 
-    <fragment
-        android:id="@+id/createResumeFragment"
-        android:name="com.example.resumebuilder.ui.create_resume.CreateResumeFragment"
-        android:label="@string/create_resume"
-        tools:layout="@layout/fragment_create_resume">
         <action
-            android:id="@+id/action_createResumeFragment_to_personalInfoFragment"
+            android:id="@+id/action_resumesFragment_to_personalInfoFragment"
             app:destination="@id/personalInfoFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/workSummaryFragment"
+        android:name="com.example.resumebuilder.ui.create_resume.work_summary.WorkSummaryFragment"
+        android:label="@string/work_summary"
+        tools:layout="@layout/fragment_work_summary">
+        <action
+            android:id="@+id/action_workSummaryFragment_to_skillsFragment"
+            app:destination="@id/skillsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/skillsFragment"
+        android:name="com.example.resumebuilder.ui.create_resume.skills.SkillsFragment"
+        android:label="@string/skills"
+        tools:layout="@layout/fragment_skills" />
+
 
 </navigation>

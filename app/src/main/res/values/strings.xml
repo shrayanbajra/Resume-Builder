@@ -23,7 +23,7 @@
     <string name="create_resume">Create Resume</string>
     <string name="resumes">Resumes</string>
     <string name="resume_has_been_saved">Resume has been saved</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="saved">Saved</string>
     <string name="view">View</string>
     <string name="edit">Edit</string>
@@ -31,7 +31,14 @@
     <string name="personal_information">Personal Information</string>
     <string name="sections">Sections</string>
     <string name="skills">Skills</string>
-    <string name="education">Education</string>
-    <string name="work_experience">Work Experience</string>
+    <string name="education_details">Education Details</string>
+    <string name="work_summary">Work Summary</string>
+    <string name="career_objective">Career Objective</string>
+    <string name="total_years_of_experience">Total Years of Experience</string>
+    <string name="project_details">Project Details</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="company_name">Company Name</string>
+    <string name="start_date">Start Date</string>
+    <string name="end_date">End Date</string>
 
 </resources>

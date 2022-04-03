@@ -15,4 +15,9 @@ fun TextInputLayout.setErrorIfInvalid(errorMessage: String) {
     }
 }
 
-fun TextInputLayout.getText() = this.editText?.text.toString()
+fun TextInputLayout.getText(): String {
+
+    val text = this.editText?.text
+    return text?.toString() ?: ""
+
+}

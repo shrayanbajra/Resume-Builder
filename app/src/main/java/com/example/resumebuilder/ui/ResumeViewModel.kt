@@ -16,6 +16,9 @@ class ResumeViewModel
 @Inject
 constructor(private val resumeRepository: ResumeRepository) : ViewModel() {
 
+    lateinit var resume: Resume
+    var isNew: Boolean = true
+
     fun saveResumeToDatabase(resume: Resume): LiveData<Boolean> {
 
         val result = MutableLiveData<Boolean>()

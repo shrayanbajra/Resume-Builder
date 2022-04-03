@@ -5,10 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.resumebuilder.R
+import com.example.resumebuilder.data.Resume
 import com.example.resumebuilder.databinding.FragmentResumesBinding
 import com.example.resumebuilder.ui.ResumeViewModel
 import com.example.resumebuilder.utils.showToast
@@ -22,7 +23,7 @@ class ResumesFragment : Fragment() {
 
     private val mResumeAdapter by lazy { ResumeAdapter() }
 
-    private val mViewModel by lazy { ViewModelProvider(this)[ResumeViewModel::class.java] }
+    private val mViewModel: ResumeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -69,7 +70,9 @@ class ResumesFragment : Fragment() {
     private fun fabAddResumeListener() {
         mBinding.fabAddResume.setOnClickListener {
 
-            findNavController().navigate(R.id.action_resumesFragment_to_createResumeFragment)
+            mViewModel.isNew = true
+            mViewModel.resume = Resume()
+            findNavController().navigate(R.id.action_resumesFragment_to_personalInfoFragment)
 
         }
     }

@@ -9,19 +9,28 @@ import com.example.resumebuilder.utils.Constants
 data class Resume(
 
     @ColumnInfo(name = "profile_photo")
-    var profilePhoto: String?,
+    var profilePhoto: String? = null,
 
     @ColumnInfo(name = "full_name")
-    var fullName: String,
+    var fullName: String? = null,
 
     @ColumnInfo(name = "email_address")
-    var emailAddress: String,
+    var emailAddress: String? = null,
 
-    @ColumnInfo(name = "phone_number")
-    var phoneNumber: String,
+    @ColumnInfo(name = "mobile_number")
+    var mobileNumber: String? = null,
 
     @ColumnInfo(name = "address")
-    var address: String
+    var address: String? = null,
+
+    @ColumnInfo(name = "career_objective")
+    var careerObjective: String? = null,
+
+    @ColumnInfo(name = "total_years_of_experience")
+    var totalYearsOfExperience: String? = null,
+
+    @ColumnInfo(name = "work_summary")
+    var workSummary: List<WorkDetails>? = null
 
 ) {
 
