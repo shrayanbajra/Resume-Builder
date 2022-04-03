@@ -29,5 +29,9 @@
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="personal_information">Personal Information</string>
+    <string name="sections">Sections</string>
+    <string name="skills">Skills</string>
+    <string name="education">Education</string>
+    <string name="work_experience">Work Experience</string>
 
 </resources>

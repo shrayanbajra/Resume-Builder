@@ -20,6 +20,16 @@
         tools:layout="@layout/fragment_resumes">
         <action
             android:id="@+id/action_resumesFragment_to_createResumeFragment"
+            app:destination="@id/createResumeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createResumeFragment"
+        android:name="com.example.resumebuilder.ui.create_resume.CreateResumeFragment"
+        android:label="@string/create_resume"
+        tools:layout="@layout/fragment_create_resume">
+        <action
+            android:id="@+id/action_createResumeFragment_to_personalInfoFragment"
             app:destination="@id/personalInfoFragment" />
     </fragment>
 
