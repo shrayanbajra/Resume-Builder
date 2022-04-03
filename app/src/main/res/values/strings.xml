@@ -28,5 +28,6 @@
     <string name="view">View</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="personal_information">Personal Information</string>
 
 </resources>

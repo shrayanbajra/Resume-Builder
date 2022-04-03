@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.resumebuilder.R
 import com.example.resumebuilder.data.Resume
-import com.example.resumebuilder.databinding.FragmentCreateResumeBinding
+import com.example.resumebuilder.databinding.FragmentPersonalInfoBinding
 import com.example.resumebuilder.ui.ResumeViewModel
 import com.example.resumebuilder.utils.getText
 import com.example.resumebuilder.utils.setErrorIfInvalid
@@ -25,9 +25,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class CreateResumeFragment : Fragment() {
+class PersonalInfoFragment : Fragment() {
 
-    private var _binding: FragmentCreateResumeBinding? = null
+    private var _binding: FragmentPersonalInfoBinding? = null
     private val mBinding get() = _binding!!
 
     private var mProfilePhotoUri: Uri? = null
@@ -39,7 +39,7 @@ class CreateResumeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentCreateResumeBinding.inflate(inflater, container, false)
+        _binding = FragmentPersonalInfoBinding.inflate(inflater, container, false)
         return mBinding.root
 
     }

@@ -39,11 +39,7 @@ class ResumesFragment : Fragment() {
         initRvResumes()
         getAllResumes()
 
-        mBinding.fabAddResume.setOnClickListener {
-
-            findNavController().navigate(R.id.action_resumesFragment_to_createResumeFragment)
-
-        }
+        fabAddResumeListener()
 
     }
 
@@ -66,6 +62,14 @@ class ResumesFragment : Fragment() {
                 mResumeAdapter.setData(resumes = resumes)
 
             }
+
+        }
+    }
+
+    private fun fabAddResumeListener() {
+        mBinding.fabAddResume.setOnClickListener {
+
+            findNavController().navigate(R.id.action_resumesFragment_to_createResumeFragment)
 
         }
     }

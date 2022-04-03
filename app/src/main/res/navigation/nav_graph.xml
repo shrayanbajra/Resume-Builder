@@ -6,12 +6,13 @@
     app:startDestination="@id/resumesFragment">
 
     <fragment
-        android:id="@+id/createResumeFragment"
-        android:name="com.example.resumebuilder.ui.create_resume.CreateResumeFragment"
-        android:label="@string/create_resume"
-        tools:layout="@layout/fragment_create_resume">
+        android:id="@+id/personalInfoFragment"
+        android:name="com.example.resumebuilder.ui.create_resume.PersonalInfoFragment"
+        android:label="@string/personal_information"
+        tools:layout="@layout/fragment_personal_info">
 
     </fragment>
+
     <fragment
         android:id="@+id/resumesFragment"
         android:name="com.example.resumebuilder.ui.resumes.ResumesFragment"
@@ -19,7 +20,7 @@
         tools:layout="@layout/fragment_resumes">
         <action
             android:id="@+id/action_resumesFragment_to_createResumeFragment"
-            app:destination="@id/createResumeFragment" />
+            app:destination="@id/personalInfoFragment" />
     </fragment>
 
 </navigation>
