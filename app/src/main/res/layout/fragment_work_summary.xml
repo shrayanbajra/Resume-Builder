@@ -40,21 +40,45 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/tv_work_summary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/work_summary"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+        app:layout_constraintBottom_toTopOf="@id/rv_work_summary"
+        app:layout_constraintEnd_toEndOf="@id/til_total_years_of_experience"
+        app:layout_constraintStart_toStartOf="@id/til_total_years_of_experience"
+        app:layout_constraintTop_toBottomOf="@id/til_total_years_of_experience" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_work_summary"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_previous"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/til_total_years_of_experience" />
+        app:layout_constraintTop_toBottomOf="@id/tv_work_summary" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_work_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_add"
+        app:layout_constraintBottom_toTopOf="@id/btn_next"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btn_previous"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/previous"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
+        android:text="@string/previous"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btn_next"
         app:layout_constraintStart_toStartOf="parent" />
@@ -63,6 +87,7 @@
         android:id="@+id/btn_next"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:text="@string/next"
         app:layout_constraintBottom_toBottomOf="@id/btn_previous"
         app:layout_constraintEnd_toEndOf="parent"

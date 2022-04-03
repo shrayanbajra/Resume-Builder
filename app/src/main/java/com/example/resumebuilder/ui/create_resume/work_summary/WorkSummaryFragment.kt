@@ -83,6 +83,11 @@ class WorkSummaryFragment : Fragment() {
 
         initRvWorkSummary()
 
+        mBinding.fabAddWorkDetails.setOnClickListener {
+            mWorkDetailsAdapter.addNewWorkDetails()
+            mBinding.rvWorkSummary.smoothScrollToPosition(mWorkDetailsAdapter.getLastItemIndex())
+        }
+
         btnPreviousListener()
         btnNextListener()
 

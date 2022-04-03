@@ -21,6 +21,14 @@ class WorkDetailsAdapter(
 
     }
 
+    fun addNewWorkDetails() {
+        val workDetails = WorkDetails()
+        mWorkDetails.add(workDetails)
+        notifyItemInserted(mWorkDetails.lastIndex)
+    }
+
+    fun getLastItemIndex() = mWorkDetails.lastIndex
+
     fun setData(workDetails: List<WorkDetails>) {
         mWorkDetails.clear()
         mWorkDetails.addAll(workDetails)
