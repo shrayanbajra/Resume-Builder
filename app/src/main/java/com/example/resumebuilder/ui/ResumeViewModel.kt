@@ -64,4 +64,20 @@ constructor(private val resumeRepository: ResumeRepository) : ViewModel() {
 
     }
 
+    fun deleteResumeFromDatabase(resume: Resume): LiveData<Boolean> {
+
+        val result = MutableLiveData<Boolean>()
+
+        viewModelScope.launch {
+
+            val deletedRows = resumeRepository.deleteResumeFromDatabase(resume = resume)
+            val wasDeleted = deletedRows > 0
+            result.postValue(wasDeleted)
+
+        }
+
+        return result
+
+    }
+
 }

@@ -10,4 +10,6 @@ interface ResumeRepository {
 
     suspend fun getAllResumesFromDatabase(): List<Resume>
 
+    suspend fun deleteResumeFromDatabase(resume: Resume): Int
+
 }

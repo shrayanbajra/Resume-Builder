@@ -8,12 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.resumebuilder.R
 import com.example.resumebuilder.data.entities.Resume
 import com.example.resumebuilder.databinding.ItemResumeBinding
-import com.example.resumebuilder.utils.SingleParamClickListener
 
-class ResumeAdapter(
-    private val clickListener: SingleParamClickListener<Resume>
-) :
-    RecyclerView.Adapter<ResumeAdapter.ResumeViewHolder>() {
+class ResumeAdapter(private val clickListener: ResumeActionListener)
+
+    : RecyclerView.Adapter<ResumeAdapter.ResumeViewHolder>() {
+
+    interface ResumeActionListener {
+
+        fun onEdit(resume: Resume)
+        fun onDelete(position: Int, resume: Resume)
+
+    }
 
     private val mResumes = arrayListOf<Resume>()
 
@@ -35,22 +40,30 @@ class ResumeAdapter(
     override fun onBindViewHolder(holder: ResumeViewHolder, position: Int) {
 
         val resume = mResumes[position]
-        holder.bind(resume)
+        holder.bind(position, resume)
 
+    }
+
+    fun removeAt(position: Int) {
+        mResumes.removeAt(position)
+        notifyItemRemoved(position)
     }
 
     inner class ResumeViewHolder(private val binding: ItemResumeBinding)
 
         : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(resume: Resume) {
+        fun bind(position: Int, resume: Resume) {
 
             binding.apply {
 
                 loadProfilePhoto(resume)
                 tvFullName.text = resume.fullName
 
-                btnEditResume.setOnClickListener { clickListener.onItemClicked(item = resume) }
+                btnEditResume.setOnClickListener { clickListener.onEdit(resume = resume) }
+                btnDeleteResume.setOnClickListener {
+                    clickListener.onDelete(position = position, resume = resume)
+                }
 
             }
 

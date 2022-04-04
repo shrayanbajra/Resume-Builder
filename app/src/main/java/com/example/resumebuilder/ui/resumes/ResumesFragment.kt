@@ -13,7 +13,6 @@ import com.example.resumebuilder.R
 import com.example.resumebuilder.data.entities.Resume
 import com.example.resumebuilder.databinding.FragmentResumesBinding
 import com.example.resumebuilder.ui.ResumeViewModel
-import com.example.resumebuilder.utils.SingleParamClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,18 +22,37 @@ class ResumesFragment : Fragment() {
     private val mBinding get() = _binding!!
 
     private val mResumeAdapter by lazy { ResumeAdapter(clickListener = mResumeClickListener) }
-    private val mResumeClickListener
-        get() = object : SingleParamClickListener<Resume> {
+    private val mResumeClickListener: ResumeAdapter.ResumeActionListener
+        get() = object : ResumeAdapter.ResumeActionListener {
 
-            override fun onItemClicked(item: Resume) {
+            override fun onEdit(resume: Resume) {
 
                 mViewModel.isNew = false
-                mViewModel.resume = item
+                mViewModel.resume = resume
                 findNavController().navigate(R.id.action_resumesFragment_to_personalInfoFragment)
 
             }
 
+            override fun onDelete(position: Int, resume: Resume) {
+
+                deleteResume(resume, position)
+
+            }
+
         }
+
+    private fun deleteResume(resume: Resume, position: Int) {
+        mViewModel.deleteResumeFromDatabase(resume = resume)
+            .observe(viewLifecycleOwner) { wasDeleted ->
+
+                if (wasDeleted) {
+
+                    mResumeAdapter.removeAt(position)
+
+                }
+
+            }
+    }
 
     private val mViewModel: ResumeViewModel by activityViewModels()
 

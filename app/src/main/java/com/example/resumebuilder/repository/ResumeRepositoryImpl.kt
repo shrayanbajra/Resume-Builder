@@ -40,4 +40,14 @@ constructor(private val resumeDao: ResumeDao) : ResumeRepository {
 
     }
 
+    override suspend fun deleteResumeFromDatabase(resume: Resume): Int {
+
+        return withContext(Dispatchers.IO) {
+
+            return@withContext resumeDao.delete(resume)
+
+        }
+
+    }
+
 }

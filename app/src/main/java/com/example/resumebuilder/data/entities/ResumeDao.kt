@@ -15,7 +15,7 @@ interface ResumeDao {
     fun getAll(): List<Resume>
 
     @Delete
-    suspend fun delete(resume: Resume)
+    suspend fun delete(resume: Resume): Int
 
     @Query("DELETE FROM resume_table")
     suspend fun deleteAll()
