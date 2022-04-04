@@ -9,17 +9,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.resumebuilder.R
-import com.example.resumebuilder.data.entities.Resume
 import com.example.resumebuilder.databinding.FragmentPersonalInfoBinding
 import com.example.resumebuilder.ui.ResumeViewModel
 import com.example.resumebuilder.utils.getText
 import com.example.resumebuilder.utils.setErrorIfInvalid
-import com.example.resumebuilder.utils.showToast
 import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -119,45 +116,6 @@ class PersonalInfoFragment : Fragment() {
 
         }
 
-    }
-
-    private fun saveResumeToDatabase() {
-
-        val profilePhoto = if (mProfilePhotoUri == null) null else mProfilePhotoUri.toString()
-
-        val resume = Resume(
-            profilePhoto = profilePhoto,
-            fullName = mBinding.tilFullName.getText(),
-            emailAddress = mBinding.tilEmailAddress.getText(),
-            mobileNumber = mBinding.tilMobileNumber.getText(),
-            address = mBinding.tilAddress.getText()
-        )
-
-        mViewModel.saveResumeToDatabase(resume = resume).observe(viewLifecycleOwner) { wasSaved ->
-
-            if (wasSaved) {
-
-                showSuccessDialog()
-
-            } else {
-
-                showToast(message = "Resume Save Failed")
-
-            }
-
-        }
-    }
-
-    private fun showSuccessDialog() {
-        val builder = AlertDialog.Builder(requireContext())
-            .setTitle(R.string.saved)
-            .setMessage(R.string.resume_has_been_saved)
-            .setPositiveButton(R.string.ok) { dialog, _ ->
-                dialog.dismiss()
-                findNavController().popBackStack()
-            }
-
-        builder.create().show()
     }
 
     private fun btnPickImageListener() {

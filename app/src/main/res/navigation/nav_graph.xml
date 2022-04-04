@@ -66,7 +66,14 @@
         android:id="@+id/saveResumeFragment"
         android:name="com.example.resumebuilder.ui.create_resume.preview.SaveResumeFragment"
         android:label="@string/save_resume"
-        tools:layout="@layout/fragment_save_resume" />
+        tools:layout="@layout/fragment_save_resume">
+        <action
+            android:id="@+id/action_saveResumeFragment_to_resumesFragment"
+            app:destination="@id/resumesFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 
 </navigation>
