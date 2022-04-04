@@ -39,7 +39,16 @@
         android:id="@+id/skillsFragment"
         android:name="com.example.resumebuilder.ui.create_resume.skills.SkillsFragment"
         android:label="@string/skills"
-        tools:layout="@layout/fragment_skills" />
+        tools:layout="@layout/fragment_skills">
+        <action
+            android:id="@+id/action_skillsFragment_to_educationDetailsFragment"
+            app:destination="@id/educationDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/educationDetailsFragment"
+        android:name="com.example.resumebuilder.ui.create_resume.EducationDetailsFragment"
+        android:label="fragment_education_details"
+        tools:layout="@layout/fragment_education_details" />
 
 
 </navigation>

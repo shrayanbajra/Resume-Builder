@@ -1,27 +1,28 @@
-package com.example.resumebuilder.data
+package com.example.resumebuilder.data.type_converters
 
 import androidx.room.TypeConverter
+import com.example.resumebuilder.data.Skill
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.util.*
 
-class WorkDetailsTypeConverter {
+class SkillsTypeConverter {
 
     @TypeConverter
-    fun jsonStringToWorkDetails(data: String?): List<WorkDetails?>? {
+    fun jsonStringToSkills(data: String?): List<Skill?>? {
 
         val gson = Gson()
         if (data == null) {
             return Collections.emptyList()
         }
 
-        val listType = object : TypeToken<List<WorkDetails?>?>() {}.type
+        val listType = object : TypeToken<List<Skill?>?>() {}.type
         return gson.fromJson(data, listType)
 
     }
 
     @TypeConverter
-    fun workDetailsToJsonString(someObjects: List<WorkDetails?>?): String? {
+    fun skillsToJsonString(someObjects: List<Skill?>?): String? {
 
         val gson = Gson()
         return gson.toJson(someObjects)

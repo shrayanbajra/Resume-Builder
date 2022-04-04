@@ -9,12 +9,15 @@
         <entry key="app/src/main/res/drawable/ic_image.xml" value="0.1535" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.12689969604863222" />
         <entry key="app/src/main/res/layout/fragment_create_resume.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_education_details.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_personal_info.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_resumes.xml" value="0.3734375" />
+        <entry key="app/src/main/res/layout/fragment_skills.xml" value="0.3734375" />
         <entry key="app/src/main/res/layout/fragment_work_summary.xml" value="0.3734375" />
         <entry key="app/src/main/res/layout/item_resume.xml" value="0.5" />
         <entry key="app/src/main/res/layout/item_section.xml" value="1.8214285714285714" />
+        <entry key="app/src/main/res/layout/item_skill.xml" value="0.3734375" />
         <entry key="app/src/main/res/layout/item_work_details.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_work_summary.xml" value="0.3734375" />
       </map>

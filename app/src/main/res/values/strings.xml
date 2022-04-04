@@ -42,5 +42,6 @@
     <string name="end_date">End Date</string>
     <string name="jan_2021">Jan 2021</string>
     <string name="apr_2022">Apr 2022</string>
+    <string name="skill">Skill</string>
 
 </resources>
