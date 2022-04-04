@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -12,7 +13,6 @@ import com.example.resumebuilder.R
 import com.example.resumebuilder.data.entities.Resume
 import com.example.resumebuilder.databinding.FragmentResumesBinding
 import com.example.resumebuilder.ui.ResumeViewModel
-import com.example.resumebuilder.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -56,14 +56,31 @@ class ResumesFragment : Fragment() {
 
             if (resumes.isNullOrEmpty()) {
 
-                showToast(message = "No resumes found")
+                showEmptyState()
 
             } else {
 
+                makeRvResumesVisible()
                 mResumeAdapter.setData(resumes = resumes)
 
             }
 
+        }
+    }
+
+    private fun showEmptyState() {
+        mBinding.apply {
+            tvEmptyState.isVisible = true
+
+            rvResumes.isVisible = false
+        }
+    }
+
+    private fun makeRvResumesVisible() {
+        mBinding.apply {
+            tvEmptyState.isVisible = false
+
+            rvResumes.isVisible = true
         }
     }
 

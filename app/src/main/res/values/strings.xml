@@ -48,5 +48,6 @@
     <string name="dummy_year">2021</string>
     <string name="percentage_or_cgpa">Percentage/CGPA</string>
     <string name="dummy_cgpa">3.60</string>
+    <string name="no_resumes_found">No Resumes Found</string>
 
 </resources>
