@@ -3,13 +3,11 @@ package com.example.resumebuilder.ui.create_resume.work_summary
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.resumebuilder.data.WorkDetails
 import com.example.resumebuilder.databinding.ItemWorkDetailsBinding
 
 class WorkDetailsAdapter(
-    private val activity: FragmentActivity,
     private val mWorkDetails: ArrayList<WorkDetails>,
     private val clickListener: WorkDetailsChangeListener
 )
@@ -19,7 +17,7 @@ class WorkDetailsAdapter(
     interface WorkDetailsChangeListener {
 
         fun onChange(workDetails: WorkDetails, position: Int)
-//        fun onDelete()
+        fun onDelete(position: Int)
 
     }
 
@@ -39,6 +37,10 @@ class WorkDetailsAdapter(
 
     fun onItemUpdated(position: Int, workDetails: WorkDetails) {
         mWorkDetails[position] = workDetails
+    }
+
+    fun removeItemAt(position: Int) {
+        notifyItemRemoved(position)
     }
 
     fun getWorkDetails(): List<WorkDetails> {
@@ -97,6 +99,12 @@ class WorkDetailsAdapter(
 
                     workDetails.endDate = if (text.isNullOrBlank()) "" else text.toString()
                     clickListener.onChange(workDetails = workDetails, position = position)
+
+                }
+
+                btnDelete.setOnClickListener {
+
+                    clickListener.onDelete(position = position)
 
                 }
 

@@ -40,11 +40,7 @@ class WorkSummaryFragment : Fragment() {
     }
 
     private val mWorkDetailsAdapter by lazy {
-        WorkDetailsAdapter(
-            activity = requireActivity(),
-            mWorkDetails = mWorkSummary,
-            clickListener = mWorkDetailsChangeListener
-        )
+        WorkDetailsAdapter(mWorkDetails = mWorkSummary, clickListener = mWorkDetailsChangeListener)
     }
     private val mWorkDetailsChangeListener: WorkDetailsAdapter.WorkDetailsChangeListener
         get() = object : WorkDetailsAdapter.WorkDetailsChangeListener {
@@ -52,6 +48,13 @@ class WorkSummaryFragment : Fragment() {
             override fun onChange(workDetails: WorkDetails, position: Int) {
 
                 mWorkSummary[position] = workDetails
+
+            }
+
+            override fun onDelete(position: Int) {
+
+                mWorkSummary.removeAt(position)
+                mWorkDetailsAdapter.removeItemAt(position)
 
             }
 
