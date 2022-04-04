@@ -33,7 +33,10 @@ data class Resume(
     var workSummary: List<WorkDetails>? = null,
 
     @ColumnInfo(name = "skills")
-    var skills: List<Skill>? = null
+    var skills: List<Skill>? = null,
+
+    @ColumnInfo(name = "education_details")
+    var educationDetails: List<EducationDetails>? = null
 
 ) {
 

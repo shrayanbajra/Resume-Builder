@@ -43,5 +43,10 @@
     <string name="jan_2021">Jan 2021</string>
     <string name="apr_2022">Apr 2022</string>
     <string name="skill">Skill</string>
+    <string name="course_or_degree">Course or Degree</string>
+    <string name="passing_year">Passing Year</string>
+    <string name="dummy_year">2021</string>
+    <string name="percentage_or_cgpa">Percentage/CGPA</string>
+    <string name="dummy_cgpa">3.60</string>
 
 </resources>
