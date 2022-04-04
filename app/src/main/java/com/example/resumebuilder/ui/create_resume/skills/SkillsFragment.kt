@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.resumebuilder.R
-import com.example.resumebuilder.data.Skill
+import com.example.resumebuilder.data.entities.Skill
 import com.example.resumebuilder.databinding.FragmentSkillsBinding
 import com.example.resumebuilder.ui.ResumeViewModel
 

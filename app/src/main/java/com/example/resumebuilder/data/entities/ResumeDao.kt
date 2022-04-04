@@ -1,4 +1,4 @@
-package com.example.resumebuilder.data
+package com.example.resumebuilder.data.entities
 
 import androidx.room.*
 

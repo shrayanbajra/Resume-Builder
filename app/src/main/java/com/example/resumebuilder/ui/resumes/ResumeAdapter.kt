@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.resumebuilder.R
-import com.example.resumebuilder.data.Resume
+import com.example.resumebuilder.data.entities.Resume
 import com.example.resumebuilder.databinding.ItemResumeBinding
 
 class ResumeAdapter : RecyclerView.Adapter<ResumeAdapter.ResumeViewHolder>() {

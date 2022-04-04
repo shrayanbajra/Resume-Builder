@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.RecyclerView
-import com.example.resumebuilder.data.Skill
+import com.example.resumebuilder.data.entities.Skill
 import com.example.resumebuilder.databinding.ItemSkillBinding
 
 class SkillAdapter(

@@ -1,6 +1,6 @@
 package com.example.resumebuilder.repository
 
-import com.example.resumebuilder.data.Resume
+import com.example.resumebuilder.data.entities.Resume
 
 interface ResumeRepository {
 

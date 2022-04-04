@@ -1,7 +1,7 @@
 package com.example.resumebuilder.data.type_converters
 
 import androidx.room.TypeConverter
-import com.example.resumebuilder.data.Skill
+import com.example.resumebuilder.data.entities.Skill
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.util.*

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.RecyclerView
-import com.example.resumebuilder.data.EducationDetails
+import com.example.resumebuilder.data.entities.EducationDetails
 import com.example.resumebuilder.databinding.ItemEducationDetailsBinding
 
 class EducationDetailsAdapter(

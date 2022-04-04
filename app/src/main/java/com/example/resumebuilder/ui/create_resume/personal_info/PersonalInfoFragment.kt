@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.resumebuilder.R
-import com.example.resumebuilder.data.Resume
+import com.example.resumebuilder.data.entities.Resume
 import com.example.resumebuilder.databinding.FragmentPersonalInfoBinding
 import com.example.resumebuilder.ui.ResumeViewModel
 import com.example.resumebuilder.utils.getText

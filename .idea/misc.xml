@@ -12,7 +12,7 @@
         <entry key="app/src/main/res/layout/fragment_education_details.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_personal_info.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_project_details.xml" value="0.11730072463768115" />
+        <entry key="app/src/main/res/layout/fragment_project_details.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_resumes.xml" value="0.3734375" />
         <entry key="app/src/main/res/layout/fragment_skills.xml" value="0.3734375" />
         <entry key="app/src/main/res/layout/fragment_work_summary.xml" value="0.3734375" />

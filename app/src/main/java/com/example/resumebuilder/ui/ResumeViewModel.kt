@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.resumebuilder.data.Resume
+import com.example.resumebuilder.data.entities.Resume
 import com.example.resumebuilder.repository.ResumeRepository
 import com.example.resumebuilder.utils.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel

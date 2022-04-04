@@ -1,7 +1,7 @@
 package com.example.resumebuilder.repository
 
-import com.example.resumebuilder.data.Resume
-import com.example.resumebuilder.data.ResumeDao
+import com.example.resumebuilder.data.entities.Resume
+import com.example.resumebuilder.data.entities.ResumeDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
