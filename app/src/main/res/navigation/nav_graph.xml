@@ -46,9 +46,18 @@
     </fragment>
     <fragment
         android:id="@+id/educationDetailsFragment"
-        android:name="com.example.resumebuilder.ui.create_resume.EducationDetailsFragment"
-        android:label="fragment_education_details"
-        tools:layout="@layout/fragment_education_details" />
+        android:name="com.example.resumebuilder.ui.create_resume.education_details.EducationDetailsFragment"
+        android:label="@string/education_details"
+        tools:layout="@layout/fragment_education_details">
+        <action
+            android:id="@+id/action_educationDetailsFragment_to_projectDetailsFragment"
+            app:destination="@id/projectDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/projectDetailsFragment"
+        android:name="com.example.resumebuilder.ui.create_resume.project_details.ProjectDetailsFragment"
+        android:label="@string/project_details"
+        tools:layout="@layout/fragment_project_details" />
 
 
 </navigation>

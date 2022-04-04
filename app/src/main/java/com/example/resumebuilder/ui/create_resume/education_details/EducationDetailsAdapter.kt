@@ -1,4 +1,4 @@
-package com.example.resumebuilder.ui.create_resume
+package com.example.resumebuilder.ui.create_resume.education_details
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

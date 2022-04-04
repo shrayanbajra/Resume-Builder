@@ -1,4 +1,4 @@
-package com.example.resumebuilder.ui.create_resume
+package com.example.resumebuilder.ui.create_resume.education_details
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.resumebuilder.R
 import com.example.resumebuilder.data.EducationDetails
 import com.example.resumebuilder.databinding.FragmentEducationDetailsBinding
 import com.example.resumebuilder.ui.ResumeViewModel
-import com.example.resumebuilder.utils.showToast
 
 class EducationDetailsFragment : Fragment() {
 
@@ -107,9 +107,7 @@ class EducationDetailsFragment : Fragment() {
         mBinding.btnNext.setOnClickListener {
 
             mViewModel.resume.educationDetails = mEducationDetailsAdapter.getEducationDetails()
-
-//            findNavController().navigate(R.id.action_skillsFragment_to_educationDetailsFragment)
-            showToast("Navigate to Project List")
+            findNavController().navigate(R.id.action_educationDetailsFragment_to_projectDetailsFragment)
 
         }
     }
