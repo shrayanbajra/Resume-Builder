@@ -6,6 +6,7 @@ import androidx.room.TypeConverters
 import com.example.resumebuilder.data.entities.Resume
 import com.example.resumebuilder.data.entities.ResumeDao
 import com.example.resumebuilder.data.type_converters.EducationDetailsTypeConverter
+import com.example.resumebuilder.data.type_converters.ProjectTypeConverter
 import com.example.resumebuilder.data.type_converters.SkillsTypeConverter
 import com.example.resumebuilder.data.type_converters.WorkDetailsTypeConverter
 
@@ -13,7 +14,8 @@ import com.example.resumebuilder.data.type_converters.WorkDetailsTypeConverter
 @TypeConverters(
     WorkDetailsTypeConverter::class,
     SkillsTypeConverter::class,
-    EducationDetailsTypeConverter::class
+    EducationDetailsTypeConverter::class,
+    ProjectTypeConverter::class
 )
 abstract class ResumeDatabase : RoomDatabase() {
 

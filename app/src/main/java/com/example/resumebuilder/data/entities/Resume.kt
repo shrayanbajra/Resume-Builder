@@ -8,6 +8,9 @@ import com.example.resumebuilder.utils.Constants
 @Entity(tableName = Constants.RESUME_TABLE)
 data class Resume(
 
+    @ColumnInfo(name = "file_name")
+    var fileName: String? = null,
+
     @ColumnInfo(name = "profile_photo")
     var profilePhoto: String? = null,
 
@@ -36,7 +39,10 @@ data class Resume(
     var skills: List<Skill>? = null,
 
     @ColumnInfo(name = "education_details")
-    var educationDetails: List<EducationDetails>? = null
+    var educationDetails: List<EducationDetails>? = null,
+
+    @ColumnInfo(name = "projects")
+    var projects: List<Project>? = null
 
 ) {
 

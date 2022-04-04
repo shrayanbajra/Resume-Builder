@@ -49,5 +49,12 @@
     <string name="percentage_or_cgpa">Percentage/CGPA</string>
     <string name="dummy_cgpa">3.60</string>
     <string name="no_resumes_found">No Resumes Found</string>
+    <string name="file_name">File name</string>
+    <string name="save_resume">Save Resume</string>
+    <string name="project_name">Project Name</string>
+    <string name="team_size">Team Size</string>
+    <string name="role">Role</string>
+    <string name="technology_used">Technology Used</string>
+    <string name="summary">Summary</string>
 
 </resources>
