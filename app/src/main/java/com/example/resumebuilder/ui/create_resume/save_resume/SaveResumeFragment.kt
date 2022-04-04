@@ -1,4 +1,4 @@
-package com.example.resumebuilder.ui.create_resume.preview
+package com.example.resumebuilder.ui.create_resume.save_resume
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -29,6 +29,13 @@ class SaveResumeFragment : Fragment() {
     ): View {
         _binding = FragmentSaveResumeBinding.inflate(inflater, container, false)
         return mBinding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        mBinding.tilFileName.editText?.setText(mViewModel.resume.fileName)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -83,7 +90,6 @@ class SaveResumeFragment : Fragment() {
             .setMessage(R.string.resume_has_been_saved)
             .setPositiveButton(R.string.ok) { dialog, _ ->
                 dialog.dismiss()
-//                findNavController().popBackStack()
                 findNavController().navigate(R.id.action_saveResumeFragment_to_resumesFragment)
             }
 

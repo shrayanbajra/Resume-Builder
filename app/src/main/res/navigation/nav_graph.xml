@@ -64,7 +64,7 @@
     </fragment>
     <fragment
         android:id="@+id/saveResumeFragment"
-        android:name="com.example.resumebuilder.ui.create_resume.preview.SaveResumeFragment"
+        android:name="com.example.resumebuilder.ui.create_resume.save_resume.SaveResumeFragment"
         android:label="@string/save_resume"
         tools:layout="@layout/fragment_save_resume">
         <action
