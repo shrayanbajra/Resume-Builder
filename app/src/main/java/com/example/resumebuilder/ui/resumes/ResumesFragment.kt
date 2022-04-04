@@ -13,6 +13,7 @@ import com.example.resumebuilder.R
 import com.example.resumebuilder.data.entities.Resume
 import com.example.resumebuilder.databinding.FragmentResumesBinding
 import com.example.resumebuilder.ui.ResumeViewModel
+import com.example.resumebuilder.utils.SingleParamClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,7 +22,19 @@ class ResumesFragment : Fragment() {
     private var _binding: FragmentResumesBinding? = null
     private val mBinding get() = _binding!!
 
-    private val mResumeAdapter by lazy { ResumeAdapter() }
+    private val mResumeAdapter by lazy { ResumeAdapter(clickListener = mResumeClickListener) }
+    private val mResumeClickListener
+        get() = object : SingleParamClickListener<Resume> {
+
+            override fun onItemClicked(item: Resume) {
+
+                mViewModel.isNew = false
+                mViewModel.resume = item
+                findNavController().navigate(R.id.action_resumesFragment_to_personalInfoFragment)
+
+            }
+
+        }
 
     private val mViewModel: ResumeViewModel by activityViewModels()
 

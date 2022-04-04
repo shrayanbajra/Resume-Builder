@@ -55,6 +55,13 @@ class PersonalInfoFragment : Fragment() {
 
         mBinding.apply {
 
+            val photoUri = if (mViewModel.resume.profilePhoto == null)
+                null
+            else
+                Uri.parse(mViewModel.resume.profilePhoto)
+
+            mProfilePhotoUri = photoUri
+
             mViewModel.resume.profilePhoto?.let { ivProfilePhoto.setImageURI(Uri.parse(it)) }
             tilFullName.editText?.setText(mViewModel.resume.fullName)
             tilEmailAddress.editText?.setText(mViewModel.resume.emailAddress)
@@ -89,7 +96,6 @@ class PersonalInfoFragment : Fragment() {
 
                     Timber.d("Resume values -> ${mViewModel.resume}")
                     findNavController().navigate(R.id.action_personalInfoFragment_to_workSummaryFragment)
-//                    saveResumeToDatabase()
 
                 }
 

@@ -8,8 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.resumebuilder.R
 import com.example.resumebuilder.data.entities.Resume
 import com.example.resumebuilder.databinding.ItemResumeBinding
+import com.example.resumebuilder.utils.SingleParamClickListener
 
-class ResumeAdapter : RecyclerView.Adapter<ResumeAdapter.ResumeViewHolder>() {
+class ResumeAdapter(
+    private val clickListener: SingleParamClickListener<Resume>
+) :
+    RecyclerView.Adapter<ResumeAdapter.ResumeViewHolder>() {
 
     private val mResumes = arrayListOf<Resume>()
 
@@ -30,8 +34,8 @@ class ResumeAdapter : RecyclerView.Adapter<ResumeAdapter.ResumeViewHolder>() {
 
     override fun onBindViewHolder(holder: ResumeViewHolder, position: Int) {
 
-        val currentItemName = mResumes[position]
-        holder.bind(currentItemName)
+        val resume = mResumes[position]
+        holder.bind(resume)
 
     }
 
@@ -45,6 +49,9 @@ class ResumeAdapter : RecyclerView.Adapter<ResumeAdapter.ResumeViewHolder>() {
 
                 loadProfilePhoto(resume)
                 tvFullName.text = resume.fullName
+
+                btnEditResume.setOnClickListener { clickListener.onItemClicked(item = resume) }
+
             }
 
         }
