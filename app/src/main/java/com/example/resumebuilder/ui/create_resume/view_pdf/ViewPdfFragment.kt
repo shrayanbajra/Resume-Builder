@@ -348,7 +348,7 @@ class ViewPdfFragment : Fragment() {
         white: BaseColor
     ) {
         mViewModel.resume.fullName?.let {
-            createHeadings(cb, 170, 730, it, 40, "bold", white)
+            createHeadings(cb, 170, 750, it, 40, "bold", white)
         }
         createHeadings(cb, 190, 680, PdfStaticValues.title, 20, "normal", white)
     }
@@ -378,12 +378,21 @@ class ViewPdfFragment : Fragment() {
     ) {
         createHeadings(cb, 30, 470, "SKILLS", 12, "bold", black)
 
-        createHeadings(cb, 40, 450, PdfStaticValues.skill1, 10, "normal", black)
-        createHeadings(cb, 40, 430, PdfStaticValues.skill2, 10, "normal", black)
-        createHeadings(cb, 40, 410, PdfStaticValues.skill3, 10, "normal", black)
-        createHeadings(cb, 40, 390, PdfStaticValues.skill4, 10, "normal", black)
-        createHeadings(cb, 40, 370, PdfStaticValues.skill5, 10, "normal", black)
-        createHeadings(cb, 40, 350, PdfStaticValues.skill6, 10, "normal", black)
+        val x = 40
+        var y = 350
+        mViewModel.resume.skills?.forEach { skill ->
+
+            skill.title?.let { createHeadings(cb, x, y, it, 10, "normal", black) }
+            y += 20
+
+        }
+
+
+//        createHeadings(cb, 40, 430, PdfStaticValues.skill2, 10, "normal", black)
+//        createHeadings(cb, 40, 410, PdfStaticValues.skill3, 10, "normal", black)
+//        createHeadings(cb, 40, 390, PdfStaticValues.skill4, 10, "normal", black)
+//        createHeadings(cb, 40, 370, PdfStaticValues.skill5, 10, "normal", black)
+//        createHeadings(cb, 40, 350, PdfStaticValues.skill6, 10, "normal", black)
 
         val line2 = Rectangle(30F, 330F, 180F, 331F)
         line2.backgroundColor = myColor
