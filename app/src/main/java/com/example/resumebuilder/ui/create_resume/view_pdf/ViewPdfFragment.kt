@@ -1,20 +1,19 @@
 package com.example.resumebuilder.ui.create_resume.view_pdf
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.MimeTypeMap
-import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.resumebuilder.R
 import com.example.resumebuilder.databinding.FragmentViewPdfBinding
+import com.example.resumebuilder.ui.ResumeViewModel
 import com.itextpdf.text.*
 import com.itextpdf.text.pdf.BaseFont
 import com.itextpdf.text.pdf.ColumnText
@@ -34,6 +33,8 @@ class ViewPdfFragment : Fragment() {
     var bfBold: BaseFont? = null
     var bfNormal: BaseFont? = null
     var bfItalic: BaseFont? = null
+
+    private val mViewModel: ResumeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -81,15 +82,15 @@ class ViewPdfFragment : Fragment() {
         val install = Intent(Intent.ACTION_VIEW)
         install.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
 
-        val apkURI = FileProvider.getUriForFile(
+        val fileUri = FileProvider.getUriForFile(
             requireContext(),
             requireContext().applicationContext.packageName.toString() + ".provider",
             pdfFile!!
         )
-        install.setDataAndType(apkURI, mimeType)
+        install.setDataAndType(fileUri, mimeType)
         install.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
 
-        Timber.d("URI -> $apkURI")
+        Timber.d("URI -> $fileUri")
 
         requireContext().startActivity(install)
 
@@ -116,21 +117,9 @@ class ViewPdfFragment : Fragment() {
 
     @Throws(FileNotFoundException::class, DocumentException::class)
     fun createPdfWrapper() {
-        val hasWriteStoragePermission =
-            ActivityCompat.checkSelfPermission(
-                requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE
-            )
-        if (hasWriteStoragePermission != PackageManager.PERMISSION_GRANTED) {
-            if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            }
-            requestPermissions(
-                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                111
-            )
-            return
-        } else {
-            createResume()
-        }
+
+        createResume()
+
     }
 
     private fun initializeFonts() {
@@ -152,7 +141,7 @@ class ViewPdfFragment : Fragment() {
     }
 
     private fun createHeadings(
-        cb: PdfContentByte,
+        pdfContentByte: PdfContentByte,
         x: Int,
         y: Int,
         text: String,
@@ -160,28 +149,28 @@ class ViewPdfFragment : Fragment() {
         fontStyle: String,
         color: BaseColor
     ) {
-        cb.beginText()
-        if (fontStyle == "normal") cb.setFontAndSize(
-            bfNormal,
-            size.toFloat()
-        ) else if (fontStyle == "bold") cb.setFontAndSize(
-            bfBold,
-            size.toFloat()
-        ) else if (fontStyle == "italic") cb.setFontAndSize(bfItalic, size.toFloat())
-        cb.setColorFill(color)
-        cb.setTextMatrix(x.toFloat(), y.toFloat())
-        cb.showText(text)
-        cb.endText()
+        pdfContentByte.beginText()
+
+        when (fontStyle) {
+            "normal" -> pdfContentByte.setFontAndSize(bfNormal, size.toFloat())
+            "bold" -> pdfContentByte.setFontAndSize(bfBold, size.toFloat())
+            "italic" -> pdfContentByte.setFontAndSize(bfItalic, size.toFloat())
+        }
+
+        pdfContentByte.setColorFill(color)
+        pdfContentByte.setTextMatrix(x.toFloat(), y.toFloat())
+        pdfContentByte.showText(text)
+        pdfContentByte.endText()
     }
 
     @Throws(DocumentException::class)
     private fun createResume() {
-        val docsFolder = File(requireContext().filesDir, "BuildTheResume")
+        val docsFolder = File(requireContext().getExternalFilesDir("Resumes"), "PDFs")
         if (!docsFolder.exists()) {
             docsFolder.mkdir()
             docsFolder.setExecutable(true)
         }
-        pdfFile = File(docsFolder, "${PdfStaticValues.fileName}'s Resume.pdf")
+        pdfFile = File(docsFolder, "${mViewModel.resume.fileName}.pdf")
         var output: OutputStream? = null
         try {
             output = FileOutputStream(pdfFile)
@@ -358,7 +347,9 @@ class ViewPdfFragment : Fragment() {
         cb: PdfContentByte,
         white: BaseColor
     ) {
-        createHeadings(cb, 170, 730, PdfStaticValues.name, 40, "bold", white)
+        mViewModel.resume.fullName?.let {
+            createHeadings(cb, 170, 730, it, 40, "bold", white)
+        }
         createHeadings(cb, 190, 680, PdfStaticValues.title, 20, "normal", white)
     }
 
@@ -369,9 +360,11 @@ class ViewPdfFragment : Fragment() {
     ) {
         createHeadings(cb, 30, 570, "CONTACT", 12, "bold", black)
 
-        createHeadings(cb, 40, 550, PdfStaticValues.phone, 10, "normal", black)
-        createHeadings(cb, 40, 530, PdfStaticValues.email, 10, "normal", black)
-        createHeadings(cb, 40, 510, PdfStaticValues.place, 10, "normal", black)
+        mViewModel.resume.apply {
+            mobileNumber?.let { createHeadings(cb, 40, 550, it, 10, "normal", black) }
+            emailAddress?.let { createHeadings(cb, 40, 530, it, 10, "normal", black) }
+            address?.let { createHeadings(cb, 40, 510, it, 10, "normal", black) }
+        }
 
         val line1 = Rectangle(30F, 490F, 180F, 491F)
         line1.backgroundColor = myColor
