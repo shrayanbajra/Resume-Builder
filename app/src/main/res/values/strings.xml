@@ -56,5 +56,7 @@
     <string name="role">Role</string>
     <string name="technology_used">Technology Used</string>
     <string name="summary">Summary</string>
+    <string name="done">Done</string>
+    <string name="preview_pdf">Preview PDF</string>
 
 </resources>

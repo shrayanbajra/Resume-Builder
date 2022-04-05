@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/layout/fragment_resumes.xml" value="0.3734375" />
         <entry key="app/src/main/res/layout/fragment_save_resume.xml" value="0.3734375" />
         <entry key="app/src/main/res/layout/fragment_skills.xml" value="0.3734375" />
+        <entry key="app/src/main/res/layout/fragment_view_pdf.xml" value="0.3734375" />
         <entry key="app/src/main/res/layout/fragment_work_summary.xml" value="0.3734375" />
         <entry key="app/src/main/res/layout/item_project.xml" value="0.3734375" />
         <entry key="app/src/main/res/layout/item_resume.xml" value="0.5" />

@@ -90,7 +90,7 @@ class SaveResumeFragment : Fragment() {
             .setMessage(R.string.resume_has_been_saved)
             .setPositiveButton(R.string.ok) { dialog, _ ->
                 dialog.dismiss()
-                findNavController().navigate(R.id.action_saveResumeFragment_to_resumesFragment)
+                findNavController().navigate(R.id.action_saveResumeFragment_to_viewPdfFragment)
             }
 
         builder.create().show()
