@@ -1,9 +1,6 @@
 package com.example.resumebuilder.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.resumebuilder.data.entities.Resume
 import com.example.resumebuilder.repository.ResumeRepository
 import com.example.resumebuilder.utils.Constants
@@ -51,16 +48,7 @@ constructor(private val resumeRepository: ResumeRepository) : ViewModel() {
 
     fun getAllResumesFromDatabase(): LiveData<List<Resume>> {
 
-        val result = MutableLiveData<List<Resume>>()
-
-        viewModelScope.launch {
-
-            val resume = resumeRepository.getAllResumesFromDatabase()
-            result.postValue(resume)
-
-        }
-
-        return result
+        return resumeRepository.getAllResumesFromDatabase().asLiveData()
 
     }
 

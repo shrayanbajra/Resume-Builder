@@ -1,6 +1,7 @@
 package com.example.resumebuilder.repository
 
 import com.example.resumebuilder.data.entities.Resume
+import kotlinx.coroutines.flow.Flow
 
 interface ResumeRepository {
 
@@ -8,7 +9,7 @@ interface ResumeRepository {
 
     suspend fun getResumeFromDatabase(id: Long): Resume
 
-    suspend fun getAllResumesFromDatabase(): List<Resume>
+    fun getAllResumesFromDatabase(): Flow<List<Resume>>
 
     suspend fun deleteResumeFromDatabase(resume: Resume): Int
 

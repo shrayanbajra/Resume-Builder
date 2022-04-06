@@ -3,6 +3,7 @@ package com.example.resumebuilder.repository
 import com.example.resumebuilder.data.entities.Resume
 import com.example.resumebuilder.data.entities.ResumeDao
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -30,13 +31,9 @@ constructor(private val resumeDao: ResumeDao) : ResumeRepository {
 
     }
 
-    override suspend fun getAllResumesFromDatabase(): List<Resume> {
+    override fun getAllResumesFromDatabase(): Flow<List<Resume>> {
 
-        return withContext(Dispatchers.IO) {
-
-            return@withContext resumeDao.getAll()
-
-        }
+        return resumeDao.getAll()
 
     }
 
