@@ -2,10 +2,7 @@ package com.example.resumebuilder.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.resumebuilder.data.dao.ResumeDao
 import com.example.resumebuilder.data.database.ResumeDatabase
-import com.example.resumebuilder.repository.ResumeRepository
-import com.example.resumebuilder.repository.ResumeRepositoryImpl
 import com.example.resumebuilder.utils.Constants
 import dagger.Module
 import dagger.Provides
@@ -27,11 +24,5 @@ class DatabaseModule {
     @Singleton
     @Provides
     fun provideResumeDao(database: ResumeDatabase) = database.resumeDao()
-
-    @Singleton
-    @Provides
-    fun provideResumeRepository(resumeDao: ResumeDao): ResumeRepository {
-        return ResumeRepositoryImpl(resumeDao)
-    }
 
 }
