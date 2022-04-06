@@ -3,16 +3,10 @@ package com.example.resumebuilder.ui.create_resume.view_pdf
 import com.example.resumebuilder.data.entities.*
 import com.example.resumebuilder.utils.Constants
 import com.itextpdf.text.Paragraph
-import com.itextpdf.text.pdf.BaseFont
-import com.itextpdf.text.pdf.PdfContentByte
 
 class PdfWriteHelper {
 
-    fun getEducationDetails(
-        educationDetails: List<EducationDetails>?,
-        pdfContentByte: PdfContentByte,
-        contentFont: BaseFont
-    ): com.itextpdf.text.List {
+    fun getEducationDetails(educationDetails: List<EducationDetails>?): com.itextpdf.text.List {
 
         val list = com.itextpdf.text.List()
 
@@ -32,8 +26,6 @@ class PdfWriteHelper {
 
             val courseOrDegree = stringBuilder.append(Constants.NEW_LINE).toString()
 
-            pdfContentByte.setFontAndSize(contentFont, 12f)
-
             list.add(courseOrDegree)
 
         }
@@ -42,11 +34,7 @@ class PdfWriteHelper {
 
     }
 
-    fun getSkills(
-        skills: List<Skill>?,
-        pdfContentByte: PdfContentByte,
-        contentFont: BaseFont
-    ): com.itextpdf.text.List {
+    fun getSkills(skills: List<Skill>?): com.itextpdf.text.List {
 
         val list = com.itextpdf.text.List()
 
@@ -57,8 +45,6 @@ class PdfWriteHelper {
             stringBuilder.append(skill.title).append(Constants.NEW_LINE)
             val skillName = stringBuilder.toString()
 
-            pdfContentByte.setFontAndSize(contentFont, 12f)
-
             list.add(skillName)
 
         }
@@ -67,11 +53,7 @@ class PdfWriteHelper {
 
     }
 
-    fun getWorkSummary(
-        workSummary: List<WorkDetails>?,
-        pdfContentByte: PdfContentByte,
-        contentFont: BaseFont
-    ): com.itextpdf.text.List {
+    fun getWorkSummary(workSummary: List<WorkDetails>?): com.itextpdf.text.List {
 
         val list = com.itextpdf.text.List()
 
@@ -90,8 +72,6 @@ class PdfWriteHelper {
 
             val workDetails = stringBuilder.append(Constants.NEW_LINE).toString()
 
-            pdfContentByte.setFontAndSize(contentFont, 12f)
-
             list.add(workDetails)
 
         }
@@ -100,11 +80,7 @@ class PdfWriteHelper {
 
     }
 
-    fun getProjects(
-        projects: List<Project>?,
-        pdfContentByte: PdfContentByte,
-        contentFont: BaseFont
-    ): com.itextpdf.text.List {
+    fun getProjects(projects: List<Project>?): com.itextpdf.text.List {
 
         val list = com.itextpdf.text.List()
 
@@ -131,8 +107,6 @@ class PdfWriteHelper {
 
             val workDetails = stringBuilder.append(Constants.NEW_LINE).toString()
 
-            pdfContentByte.setFontAndSize(contentFont, 12f)
-
             list.add(workDetails)
 
         }
@@ -141,11 +115,7 @@ class PdfWriteHelper {
 
     }
 
-    fun getContactDetails(
-        resume: Resume,
-        pdfContentByte: PdfContentByte,
-        contentFont: BaseFont
-    ): Paragraph {
+    fun getContactDetails(resume: Resume): Paragraph {
 
         val stringBuilder = StringBuilder().apply {
 
@@ -167,24 +137,8 @@ class PdfWriteHelper {
         }
 
         val contactDetails = stringBuilder.toString()
-        pdfContentByte.setFontAndSize(contentFont, 12f)
 
         return Paragraph(contactDetails)
-
-    }
-
-    fun getNameSection(resume: Resume): Paragraph {
-
-        val stringBuilder = StringBuilder().apply {
-
-            resume.fullName?.let {
-                append("Mobile Number: $it")
-                append(Constants.NEW_LINE)
-            }
-
-        }
-
-        return Paragraph(stringBuilder.toString())
 
     }
 
