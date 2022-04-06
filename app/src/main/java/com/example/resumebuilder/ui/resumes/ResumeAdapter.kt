@@ -15,6 +15,7 @@ class ResumeAdapter(private val clickListener: ResumeActionListener)
 
     interface ResumeActionListener {
 
+        fun onView(resume: Resume)
         fun onEdit(resume: Resume)
         fun onDelete(position: Int, resume: Resume)
 
@@ -60,7 +61,10 @@ class ResumeAdapter(private val clickListener: ResumeActionListener)
                 loadProfilePhoto(resume)
                 tvFullName.text = resume.fullName
 
+                btnViewResume.setOnClickListener { clickListener.onView(resume = resume) }
+
                 btnEditResume.setOnClickListener { clickListener.onEdit(resume = resume) }
+
                 btnDeleteResume.setOnClickListener {
                     clickListener.onDelete(position = position, resume = resume)
                 }

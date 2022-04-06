@@ -1,12 +1,9 @@
 package com.example.resumebuilder.ui.create_resume.view_pdf
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.MimeTypeMap
-import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -17,7 +14,6 @@ import com.example.resumebuilder.utils.Constants
 import com.itextpdf.text.*
 import com.itextpdf.text.pdf.BaseFont
 import com.itextpdf.text.pdf.PdfWriter
-import timber.log.Timber
 import java.io.*
 
 
@@ -63,29 +59,10 @@ class ViewPdfFragment : Fragment() {
     }
 
     private fun openPdf() {
-        val mimeTypeMap = MimeTypeMap.getSingleton()
-        val extension = MimeTypeMap.getFileExtensionFromUrl(pdfFile?.name)
-        var mimeType = mimeTypeMap.getMimeTypeFromExtension(extension)
 
-        if (mimeType == null) mimeType = "*/*"
-
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-
-        val fileUri = FileProvider.getUriForFile(
-            requireContext(),
-            requireContext().applicationContext.packageName.toString() + ".provider",
-            pdfFile!!
-        )
-        intent.setDataAndType(fileUri, mimeType)
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-
-        Timber.d("URI -> $fileUri")
         mBinding.pdfView.fromFile(pdfFile)
             .swipeHorizontal(false)
             .load()
-
-//        requireContext().startActivity(intent)
 
     }
 

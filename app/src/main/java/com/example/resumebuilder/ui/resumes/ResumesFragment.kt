@@ -25,6 +25,13 @@ class ResumesFragment : Fragment() {
     private val mResumeClickListener: ResumeAdapter.ResumeActionListener
         get() = object : ResumeAdapter.ResumeActionListener {
 
+            override fun onView(resume: Resume) {
+
+                mViewModel.resume = resume
+                findNavController().navigate(R.id.action_resumesFragment_to_viewPdfFragment)
+
+            }
+
             override fun onEdit(resume: Resume) {
 
                 mViewModel.isNew = false

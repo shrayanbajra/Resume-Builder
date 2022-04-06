@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_resumesFragment_to_personalInfoFragment"
             app:destination="@id/personalInfoFragment" />
+        <action
+            android:id="@+id/action_resumesFragment_to_viewPdfFragment"
+            app:destination="@id/viewPdfFragment" />
     </fragment>
     <fragment
         android:id="@+id/workSummaryFragment"
