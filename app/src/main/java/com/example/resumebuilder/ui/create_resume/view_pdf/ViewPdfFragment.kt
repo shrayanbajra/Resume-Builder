@@ -63,26 +63,29 @@ class ViewPdfFragment : Fragment() {
     }
 
     private fun openPdf() {
-        val map = MimeTypeMap.getSingleton()
-        val ext = MimeTypeMap.getFileExtensionFromUrl(pdfFile?.name)
-        var mimeType = map.getMimeTypeFromExtension(ext)
+        val mimeTypeMap = MimeTypeMap.getSingleton()
+        val extension = MimeTypeMap.getFileExtensionFromUrl(pdfFile?.name)
+        var mimeType = mimeTypeMap.getMimeTypeFromExtension(extension)
 
         if (mimeType == null) mimeType = "*/*"
 
-        val install = Intent(Intent.ACTION_VIEW)
-        install.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
 
         val fileUri = FileProvider.getUriForFile(
             requireContext(),
             requireContext().applicationContext.packageName.toString() + ".provider",
             pdfFile!!
         )
-        install.setDataAndType(fileUri, mimeType)
-        install.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        intent.setDataAndType(fileUri, mimeType)
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
 
         Timber.d("URI -> $fileUri")
+        mBinding.pdfView.fromFile(pdfFile)
+            .swipeHorizontal(false)
+            .load()
 
-        requireContext().startActivity(install)
+//        requireContext().startActivity(intent)
 
     }
 
