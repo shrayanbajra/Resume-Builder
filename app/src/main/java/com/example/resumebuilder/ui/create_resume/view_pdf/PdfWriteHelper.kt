@@ -173,4 +173,19 @@ class PdfWriteHelper {
 
     }
 
+    fun getNameSection(resume: Resume): Paragraph {
+
+        val stringBuilder = StringBuilder().apply {
+
+            resume.fullName?.let {
+                append("Mobile Number: $it")
+                append(Constants.NEW_LINE)
+            }
+
+        }
+
+        return Paragraph(stringBuilder.toString())
+
+    }
+
 }

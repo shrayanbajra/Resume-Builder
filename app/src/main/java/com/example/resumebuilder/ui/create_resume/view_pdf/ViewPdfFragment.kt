@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.resumebuilder.R
 import com.example.resumebuilder.databinding.FragmentViewPdfBinding
 import com.example.resumebuilder.ui.ResumeViewModel
+import com.example.resumebuilder.utils.Constants
 import com.itextpdf.text.*
 import com.itextpdf.text.pdf.BaseFont
 import com.itextpdf.text.pdf.PdfContentByte
@@ -32,6 +33,15 @@ class ViewPdfFragment : Fragment() {
     var bfBold: BaseFont? = null
     var bfNormal: BaseFont? = null
     var bfItalic: BaseFont? = null
+
+    val headingFont = FontFactory.getFont(
+        "res/font/sf_pro_display_medium.OTF",
+        BaseFont.IDENTITY_H,
+        BaseFont.EMBEDDED,
+        16f,
+        Font.NORMAL,
+        BaseColor.BLACK
+    )
 
     private val mViewModel: ResumeViewModel by activityViewModels()
 
@@ -202,40 +212,14 @@ class ViewPdfFragment : Fragment() {
             BaseColor.BLACK
         )
 
-        val contactDetails = PdfWriteHelper().getContactDetails(
-            resume = mViewModel.resume,
-            pdfContentByte = cb,
-            contentFont = bfNormal!!
-        )
-        document.add(contactDetails)
-
-        val educationDetails = PdfWriteHelper().getEducationDetails(
-            educationDetails = mViewModel.resume.educationDetails,
-            pdfContentByte = cb,
-            contentFont = bfNormal!!
-        )
-        document.add(educationDetails)
-
-        val skills = PdfWriteHelper().getSkills(
-            skills = mViewModel.resume.skills,
-            pdfContentByte = cb,
-            contentFont = bfNormal!!
-        )
-        document.add(skills)
-
-        val workSummary = PdfWriteHelper().getWorkSummary(
-            workSummary = mViewModel.resume.workSummary,
-            pdfContentByte = cb,
-            contentFont = bfNormal!!
-        )
-        document.add(workSummary)
-
-        val projects = PdfWriteHelper().getProjects(
-            projects = mViewModel.resume.projects,
-            pdfContentByte = cb,
-            contentFont = bfNormal!!
-        )
-        document.add(projects)
+        document.apply {
+            addNameSection()
+            addContactsSection(cb)
+            addSkillsSection(cb)
+            addWorkSummarySection(cb)
+            addEducationSection(cb)
+            addProjectsSection(cb)
+        }
 
         try {
             document.close()
@@ -249,6 +233,79 @@ class ViewPdfFragment : Fragment() {
             e.printStackTrace()
         }
 
+    }
+
+    private fun Document.addNameSection() {
+        val font = FontFactory.getFont(
+            "res/font/sf_pro_display_medium.OTF",
+            BaseFont.IDENTITY_H,
+            BaseFont.EMBEDDED,
+            20f,
+            Font.NORMAL,
+            BaseColor.BLACK
+        )
+        val fullName = Paragraph(mViewModel.resume.fullName, font)
+        this.add(fullName)
+    }
+
+    private fun Document.addContactsSection(cb: PdfContentByte) {
+        val contactDetailsHeader = Paragraph("Contacts", headingFont)
+        this.add(contactDetailsHeader)
+
+        val contactDetails = PdfWriteHelper().getContactDetails(
+            resume = mViewModel.resume,
+            pdfContentByte = cb,
+            contentFont = bfNormal!!
+        )
+        this.add(contactDetails)
+    }
+
+    private fun Document.addEducationSection(cb: PdfContentByte) {
+        val educationHeader = Paragraph("Education", headingFont)
+        this.add(educationHeader)
+
+        val educationDetails = PdfWriteHelper().getEducationDetails(
+            educationDetails = mViewModel.resume.educationDetails,
+            pdfContentByte = cb,
+            contentFont = bfNormal!!
+        )
+        this.add(educationDetails)
+    }
+
+    private fun Document.addSkillsSection(cb: PdfContentByte) {
+        val skillsHeader = Paragraph(Constants.NEW_LINE + "Skills", headingFont)
+        this.add(skillsHeader)
+
+        val skills = PdfWriteHelper().getSkills(
+            skills = mViewModel.resume.skills,
+            pdfContentByte = cb,
+            contentFont = bfNormal!!
+        )
+        this.add(skills)
+    }
+
+    private fun Document.addWorkSummarySection(cb: PdfContentByte) {
+        val workSummaryHeader = Paragraph(Constants.NEW_LINE + "Work Summary", headingFont)
+        this.add(workSummaryHeader)
+
+        val workSummary = PdfWriteHelper().getWorkSummary(
+            workSummary = mViewModel.resume.workSummary,
+            pdfContentByte = cb,
+            contentFont = bfNormal!!
+        )
+        this.add(workSummary)
+    }
+
+    private fun Document.addProjectsSection(cb: PdfContentByte) {
+        val projectsHeader = Paragraph("Projects", headingFont)
+        this.add(projectsHeader)
+
+        val projects = PdfWriteHelper().getProjects(
+            projects = mViewModel.resume.projects,
+            pdfContentByte = cb,
+            contentFont = bfNormal!!
+        )
+        this.add(projects)
     }
 
     override fun onDestroyView() {
