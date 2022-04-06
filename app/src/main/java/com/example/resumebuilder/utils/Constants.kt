@@ -7,4 +7,8 @@ object Constants {
     const val RESUME_DATABASE = "resume_database"
     const val RESUME_TABLE = "resume_table"
 
+    const val NEW_LINE = "\n"
+    const val TAB = "\t"
+    const val TAB_LENGTH_SPACES = "        "
+
 }
