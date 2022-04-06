@@ -161,6 +161,9 @@ class ViewPdfFragment : Fragment() {
     }
 
     private fun Document.addEducationSection() {
+
+        if (mViewModel.resume.educationDetails.isNullOrEmpty()) return
+
         val educationHeader = Paragraph("Education", headingFont)
         this.add(educationHeader)
 
@@ -171,6 +174,9 @@ class ViewPdfFragment : Fragment() {
     }
 
     private fun Document.addSkillsSection() {
+
+        if (mViewModel.resume.skills.isNullOrEmpty()) return
+
         val skillsHeader = Paragraph(Constants.NEW_LINE + "Skills", headingFont)
         this.add(skillsHeader)
 
@@ -179,6 +185,9 @@ class ViewPdfFragment : Fragment() {
     }
 
     private fun Document.addWorkSummarySection() {
+
+        if (mViewModel.resume.workSummary.isNullOrEmpty()) return
+
         val workSummaryHeader = Paragraph(Constants.NEW_LINE + "Work Summary", headingFont)
         this.add(workSummaryHeader)
 
@@ -189,6 +198,9 @@ class ViewPdfFragment : Fragment() {
     }
 
     private fun Document.addProjectsSection() {
+
+        if (mViewModel.resume.projects.isNullOrEmpty()) return
+
         val projectsHeader = Paragraph("Projects", headingFont)
         this.add(projectsHeader)
 
