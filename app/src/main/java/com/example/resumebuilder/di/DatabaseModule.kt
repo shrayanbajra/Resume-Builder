@@ -2,8 +2,8 @@ package com.example.resumebuilder.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.resumebuilder.data.dao.ResumeDao
 import com.example.resumebuilder.data.database.ResumeDatabase
-import com.example.resumebuilder.data.entities.ResumeDao
 import com.example.resumebuilder.repository.ResumeRepository
 import com.example.resumebuilder.repository.ResumeRepositoryImpl
 import com.example.resumebuilder.utils.Constants

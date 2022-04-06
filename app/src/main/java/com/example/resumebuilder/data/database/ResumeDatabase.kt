@@ -3,8 +3,8 @@ package com.example.resumebuilder.data.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.example.resumebuilder.data.dao.ResumeDao
 import com.example.resumebuilder.data.entities.Resume
-import com.example.resumebuilder.data.entities.ResumeDao
 import com.example.resumebuilder.data.type_converters.EducationDetailsTypeConverter
 import com.example.resumebuilder.data.type_converters.ProjectTypeConverter
 import com.example.resumebuilder.data.type_converters.SkillsTypeConverter

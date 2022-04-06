@@ -1,6 +1,7 @@
-package com.example.resumebuilder.data.entities
+package com.example.resumebuilder.data.dao
 
 import androidx.room.*
+import com.example.resumebuilder.data.entities.Resume
 import kotlinx.coroutines.flow.Flow
 
 @Dao
